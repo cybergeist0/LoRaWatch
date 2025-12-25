@@ -37,6 +37,7 @@ pico_sdk_init()
 
 add_executable(smartwatch 
     main.cpp 
+    rotary.cpp
 )
 
 pico_set_program_name(smartwatch "smartwatch")
@@ -48,11 +49,13 @@ pico_enable_stdio_usb(smartwatch 1)
 
 # Add the standard library to the build
 target_link_libraries(smartwatch
-        pico_stdlib)
+        pico_stdlib
+)
 
 # Add the standard include files to the build
 target_include_directories(smartwatch PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
 pico_add_extra_outputs(smartwatch)
