@@ -38,6 +38,7 @@ pico_sdk_init()
 add_executable(smartwatch 
     main.cpp 
     rotary.cpp
+    button.cpp
 )
 
 pico_set_program_name(smartwatch "smartwatch")
