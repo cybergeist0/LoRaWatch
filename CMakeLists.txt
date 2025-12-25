@@ -35,7 +35,9 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(smartwatch smartwatch.cpp )
+add_executable(smartwatch 
+    main.cpp 
+)
 
 pico_set_program_name(smartwatch "smartwatch")
 pico_set_program_version(smartwatch "0.1")
