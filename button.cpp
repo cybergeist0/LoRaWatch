@@ -1,6 +1,7 @@
 #include "button.hpp"
 #include "hardware/gpio.h"
 #include "pico/time.h"
+#include "gpio_manager.hpp"
 
 Button* Button::instances[30] = { nullptr };
 
@@ -17,7 +18,7 @@ void Button::init() {
     if (pin < 30) {
         Button::instances[pin] = this;
     }
-    gpio_set_irq_enabled_with_callback(pin, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true, &Button::gpio_callback);
+    gpio_manager_register_button(pin, &Button::gpio_callback);
 }
 
 void Button::gpio_callback(uint gpio, uint32_t events) {

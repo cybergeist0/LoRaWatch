@@ -1,6 +1,7 @@
 #include "rotary.hpp"
 #include "hardware/gpio.h"
 #include "pico/time.h"
+#include "gpio_manager.hpp"
 
 RotaryEncoder::RotaryEncoder(uint clk_pin, uint dt_pin)
     : clk_pin(clk_pin), dt_pin(dt_pin), count(0), previous_clk(false), last_irq_ms(0), debounce_ms(3) {
@@ -17,7 +18,7 @@ void RotaryEncoder::init() {
     last_irq_ms = to_ms_since_boot(get_absolute_time());
     RotaryEncoder::instance = this;
     // both to track state but only count on falling
-    gpio_set_irq_enabled_with_callback(clk_pin, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true, &RotaryEncoder::gpio_callback);
+    gpio_manager_register_rotary(clk_pin, &RotaryEncoder::gpio_callback);
 }
 
 void RotaryEncoder::gpio_callback(uint gpio, uint32_t events) {

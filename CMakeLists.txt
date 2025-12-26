@@ -39,6 +39,10 @@ add_executable(smartwatch
     main.cpp 
     rotary.cpp
     button.cpp
+    oled.cpp
+    menu.cpp
+    screens.cpp
+    gpio_manager.cpp
 )
 
 pico_set_program_name(smartwatch "smartwatch")
@@ -50,7 +54,8 @@ pico_enable_stdio_usb(smartwatch 1)
 
 # Add the standard library to the build
 target_link_libraries(smartwatch
-        pico_stdlib
+    pico_stdlib
+    hardware_i2c
 )
 
 # Add the standard include files to the build
