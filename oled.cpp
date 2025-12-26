@@ -121,6 +121,16 @@ void OledDisplay::drawString(int x, int y, const char* str, bool color) {
 	}
 }
 
+void OledDisplay::drawImage(int x, int y, int size, const bool* pixelMap) {
+	for (int row = 0; row < size; row++) {
+		for (int col = 0; col < size; col++) {
+			if (pixelMap[row * size + col]) {
+				drawPixel(x + col, y + row, true);
+			}
+		}
+	}
+}
+
 void OledDisplay::sendBufferPage(uint8_t page) {
 	if (page >= height / 8) return;
 	uint8_t cmds[] = {

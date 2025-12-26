@@ -20,6 +20,7 @@ public:
 	void fillRect(int x, int y, int w, int h, bool color = true);
 	void drawChar(int x, int y, char c, bool color = true);
 	void drawString(int x, int y, const char* str, bool color = true);
+	void drawImage(int x, int y, int size, const bool* pixelMap);
 	void update();  // push buffer to display
 
 private:
